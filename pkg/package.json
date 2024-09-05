@@ -8,5 +8,8 @@
     "aurora_engine_utils.d.ts"
   ],
   "main": "aurora_engine_utils.js",
-  "types": "aurora_engine_utils.d.ts"
+  "types": "aurora_engine_utils.d.ts",
+  "publishConfig": {
+    "access": "public"
+  }
 }
