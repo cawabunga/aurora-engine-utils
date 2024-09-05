@@ -1,6 +1,7 @@
 {
   "name": "@cawabunga/aurora-engine-utils-js",
   "version": "0.1.0",
+  "license": "MIT",
   "files": [
     "aurora_engine_utils_bg.wasm",
     "aurora_engine_utils.js",
