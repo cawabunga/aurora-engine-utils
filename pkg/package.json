@@ -1,0 +1,11 @@
+{
+  "name": "@cawabunga/aurora-engine-utils-js",
+  "version": "0.1.0",
+  "files": [
+    "aurora_engine_utils_bg.wasm",
+    "aurora_engine_utils.js",
+    "aurora_engine_utils.d.ts"
+  ],
+  "main": "aurora_engine_utils.js",
+  "types": "aurora_engine_utils.d.ts"
+}
