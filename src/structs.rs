@@ -41,8 +41,10 @@ pub struct JsLegacyEthSignedTransaction {
 
 impl From<LegacyEthSignedTransaction> for JsLegacyEthSignedTransaction {
     fn from(rust_struct: LegacyEthSignedTransaction) -> Self {
+        let sender = rust_struct.sender().unwrap();
+
         JsLegacyEthSignedTransaction {
-            transaction: JsTransactionLegacy::from(rust_struct.transaction),
+            transaction: JsTransactionLegacy::from((rust_struct.transaction, sender)),
             v: format!("0x{:x}", rust_struct.v),
             r: format!("0x{:x}", rust_struct.r),
             s: format!("0x{:x}", rust_struct.s),
@@ -56,17 +58,19 @@ pub struct JsTransactionLegacy {
     pub nonce: String,
     pub gas_price: String,
     pub gas_limit: String,
+    pub from: String,
     pub to: String,
     pub value: String,
     pub data: Vec<u8>,
 }
 
-impl From<TransactionLegacy> for JsTransactionLegacy {
-    fn from(rust_struct: TransactionLegacy) -> Self {
+impl From<(TransactionLegacy, Address)> for JsTransactionLegacy {
+    fn from((rust_struct, from): (TransactionLegacy, Address)) -> Self {
         JsTransactionLegacy {
             nonce: rust_struct.nonce.to_string(),
             gas_price: rust_struct.gas_price.to_string(),
             gas_limit: rust_struct.gas_limit.to_string(),
+            from: to_zero_prefixed_address(&Some(from)),
             to: to_zero_prefixed_address(&rust_struct.to),
             value: rust_struct.value.to_string(),
             data: rust_struct.data,
@@ -85,8 +89,10 @@ pub struct JsSignedTransaction2930 {
 
 impl From<SignedTransaction2930> for JsSignedTransaction2930 {
     fn from(rust_struct: SignedTransaction2930) -> Self {
+        let sender = rust_struct.sender().unwrap();
+
         JsSignedTransaction2930 {
-            transaction: JsTransaction2930::from(rust_struct.transaction),
+            transaction: JsTransaction2930::from((rust_struct.transaction, sender)),
             parity: rust_struct.parity,
             r: rust_struct.r.to_string(),
             s: rust_struct.s.to_string(),
@@ -101,19 +107,21 @@ pub struct JsTransaction2930 {
     pub nonce: String,
     pub gas_price: String,
     pub gas_limit: String,
+    pub from: String,
     pub to: String,
     pub value: String,
     pub data: Vec<u8>,
     pub access_list: Vec<JsAccessTuple>,
 }
 
-impl From<Transaction2930> for JsTransaction2930 {
-    fn from(rust_struct: Transaction2930) -> Self {
+impl From<(Transaction2930, Address)> for JsTransaction2930 {
+    fn from((rust_struct, from): (Transaction2930, Address)) -> Self {
         JsTransaction2930 {
             chain_id: rust_struct.chain_id.to_string(),
             nonce: rust_struct.nonce.to_string(),
             gas_price: rust_struct.gas_price.to_string(),
             gas_limit: rust_struct.gas_limit.to_string(),
+            from: to_zero_prefixed_address(&Some(from)),
             to: to_zero_prefixed_address(&rust_struct.to),
             value: rust_struct.value.to_string(),
             data: rust_struct.data,
@@ -157,8 +165,10 @@ pub struct JsSignedTransaction1559 {
 
 impl From<SignedTransaction1559> for JsSignedTransaction1559 {
     fn from(rust_struct: SignedTransaction1559) -> Self {
+        let sender = rust_struct.sender().unwrap();
+
         JsSignedTransaction1559 {
-            transaction: JsTransaction1559::from(rust_struct.transaction),
+            transaction: JsTransaction1559::from((rust_struct.transaction, sender)),
             parity: rust_struct.parity,
             r: rust_struct.r.to_string(),
             s: rust_struct.s.to_string(),
@@ -174,20 +184,22 @@ pub struct JsTransaction1559 {
     pub max_priority_fee_per_gas: String,
     pub max_fee_per_gas: String,
     pub gas_limit: String,
+    pub from: String,
     pub to: String,
     pub value: String,
     pub data: Vec<u8>,
     pub access_list: Vec<JsAccessTuple>,
 }
 
-impl From<Transaction1559> for JsTransaction1559 {
-    fn from(rust_struct: Transaction1559) -> Self {
+impl From<(Transaction1559, Address)> for JsTransaction1559 {
+    fn from((rust_struct, from): (Transaction1559, Address)) -> Self {
         JsTransaction1559 {
             chain_id: rust_struct.chain_id.to_string(),
             nonce: rust_struct.nonce.to_string(),
             max_priority_fee_per_gas: rust_struct.max_priority_fee_per_gas.to_string(),
             max_fee_per_gas: rust_struct.max_fee_per_gas.to_string(),
             gas_limit: rust_struct.gas_limit.to_string(),
+            from: to_zero_prefixed_address(&Some(from)),
             to: to_zero_prefixed_address(&rust_struct.to),
             value: rust_struct.value.to_string(),
             data: rust_struct.data,

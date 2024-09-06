@@ -12,6 +12,7 @@ export interface JsTransaction1559 {
     maxPriorityFeePerGas: string;
     maxFeePerGas: string;
     gasLimit: string;
+    from: string;
     to: string;
     value: string;
     data: number[];
@@ -35,6 +36,7 @@ export interface JsTransaction2930 {
     nonce: string;
     gasPrice: string;
     gasLimit: string;
+    from: string;
     to: string;
     value: string;
     data: number[];
@@ -52,6 +54,7 @@ export interface JsTransactionLegacy {
     nonce: string;
     gasPrice: string;
     gasLimit: string;
+    from: string;
     to: string;
     value: string;
     data: number[];

@@ -1,6 +1,7 @@
 {
   "name": "@cawabunga/aurora-engine-utils-js",
   "version": "0.1.0",
+  "author": "Emil Ibatullin",
   "license": "MIT",
   "files": [
     "aurora_engine_utils_bg.wasm",
@@ -11,5 +12,13 @@
   "types": "aurora_engine_utils.d.ts",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cawabunga/aurora-engine-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cawabunga/aurora-engine-utils/issues"
+  },
+  "homepage": "https://github.com/cawabunga/aurora-engine-utils/tree/main/pkg#readme"
 }
