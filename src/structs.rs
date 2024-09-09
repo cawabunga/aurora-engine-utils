@@ -215,7 +215,7 @@ impl From<(Transaction1559, Address)> for JsTransaction1559 {
 fn to_zero_prefixed_address(address: &Option<Address>) -> String {
     address
         .map(|address| address.encode())
-        .or_else(|| Some("00000000000000000000000000000000".to_string()))
+        .or_else(|| Some("0000000000000000000000000000000000000000".to_string()))
         .map(|address| format!("0x{}", address))
         .unwrap()
 }
